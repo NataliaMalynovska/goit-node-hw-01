@@ -29,11 +29,11 @@ switch (action) {
 	case "list":
 		invokeAction({ action });
 		break;
-	case "remove", "get":
+	case ("remove", "get"):
 		const [, , , id] = process.argv;
 		invokeAction({ action, id });
 		break;
-		
+
 	case "add":
 		const [, , , nameArgs, email, phone] = process.argv;
 		const name = [...nameArgs].join("");

@@ -38,7 +38,7 @@ program
 	.option("-e, --email <type>", "user email")
 	.option("-p, --phone <type>", "user phone")
 	.action(async (options) => {
-		const {name, email, phone} = options;
+		const { name, email, phone } = options;
 		invokeAction({
 			action: "add",
 			name: name,
