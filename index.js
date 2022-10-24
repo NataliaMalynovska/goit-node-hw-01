@@ -24,25 +24,16 @@ async function invokeAction({ action, id, name, email, phone }) {
 	}
 }
 
-// invokeAction({ action: "list" });
-// invokeAction({
-// 	action: "add",
-// 	name: "Vera",
-// 	email: "vera@nbv.com",
-// 	phone: "(044)4561237897",
-// });
-// invokeAction({ action: "get", id: "1" });
-// invokeAction({ action: "remove", id: "db232d6c-e4e0-49c6-a1c0-e22b357a8c7d" });
-
 const [, , action] = process.argv;
 switch (action) {
 	case "list":
 		invokeAction({ action });
 		break;
-	case ("get", "remove"):
+	case "remove", "get":
 		const [, , , id] = process.argv;
 		invokeAction({ action, id });
 		break;
+		
 	case "add":
 		const [, , , nameArgs, email, phone] = process.argv;
 		const name = [...nameArgs].join("");

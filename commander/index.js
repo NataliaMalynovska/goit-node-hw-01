@@ -32,35 +32,23 @@ program.command("get <id>").action(async (options) => {
 	const id = options;
 	invokeAction({ action: "get", id });
 });
-program.command("add <nameArgs> <email> <phone>").action(async (options) => {
-	invokeAction({
-		action: "add",
-		name: options,
-		email: options,
-		phone: options,
+program
+	.command("add ")
+	.option("-n, --name <type>", "user name")
+	.option("-e, --email <type>", "user email")
+	.option("-p, --phone <type>", "user phone")
+	.action(async (options) => {
+		const {name, email, phone} = options;
+		invokeAction({
+			action: "add",
+			name: name,
+			email: email,
+			phone: phone,
+		});
 	});
-});
 program.command("remove <id>").action(async (options) => {
 	const id = options;
 	invokeAction({ action: "remove", id });
 });
 
 program.parse();
-// const [, , action] = process.argv;
-// switch (action) {
-// 	case "list":
-// 		invokeAction({ action });
-// 		break;
-// 	case ("get", "remove"):
-// 		const [, , , id] = process.argv;
-// 		invokeAction({ action, id });
-// 		break;
-// 	case "add":
-// 		const [, , , nameArgs, email, phone] = process.argv;
-// 		const name = [...nameArgs].join("");
-// 		invokeAction({ action, name, email, phone });
-// 		break;
-
-// 	default:
-// 		break;
-// }
