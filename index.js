@@ -1,4 +1,5 @@
 const db = require("./contacts");
+const argv = require("yargs").argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
 	switch (action) {
@@ -23,23 +24,28 @@ async function invokeAction({ action, id, name, email, phone }) {
 			console.warn("\x1B[31m Unknown action type!");
 	}
 }
+invokeAction(argv);
 
-const [, , action] = process.argv;
-switch (action) {
-	case "list":
-		invokeAction({ action });
-		break;
-	case ("remove", "get"):
-		const [, , , id] = process.argv;
-		invokeAction({ action, id });
-		break;
 
-	case "add":
-		const [, , , nameArgs, email, phone] = process.argv;
-		const name = [...nameArgs].join("");
-		invokeAction({ action, name, email, phone });
-		break;
+// const [, , action] = process.argv;
+// switch (action) {
+// 	case "list":
+// 		invokeAction({ action });
+// 		break;
+// 	case "remove":
+// 		const [, , , id] = process.argv;
+// 		invokeAction({ action, id });
+// 		break;
+// 	case "get":
+// 		const [, , , id] = process.argv;
+// 		invokeAction({ action, id });
+// 		break;
+// 	case "add":
+// 		const [, , , nameArgs, email, phone] = process.argv;
+// 		const name = [...nameArgs].join("");
+// 		invokeAction({ action, name, email, phone });
+// 		break;
 
-	default:
-		break;
-}
+// 	default:
+// 		break;
+// }
